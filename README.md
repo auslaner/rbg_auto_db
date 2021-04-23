@@ -1,7 +1,9 @@
 # Prerequisites
-- Docker
-- Python3
+- [AWS CLI v. 2](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 - AWS CLI credentials
+- Docker
+- [JQ](https://stedolan.github.io/jq/) 
+- Python3
 
 # Setup
 
@@ -17,6 +19,10 @@ First, create the `creds.env` file in the same directory as this file. In it, de
 
 Then, create the directories `backups` and `certs`. Place your client certificate and key files in the `certs` 
 directory.
+
+Install prerequisites. JQ can be installed on Mac with homebrew:
+
+`brew install jq`
 
 Install required packages:
 

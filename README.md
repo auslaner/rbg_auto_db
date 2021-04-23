@@ -36,6 +36,19 @@ case, simply re-run the script to try again.
 
 Tested with python version 3.9.1.
 
+# Troubleshooting
+
+If the postgres docker container fails to connect to the RDS instance to dump the database, visit AWS's VPC admin portal
+and view the Client VPN Endpoint section to see if the endpoint is in an 'available' state. If not, it may just need
+more time to become ready.
+
+If the VPN endpoint is available but the docker container is still failing to connect, it may be that an old version of
+the vpn-client container is still running. This can happen if the script starts the container but then is interrupted
+before it can clean up the containers. To resolve this, simply stop and remove the vpn-client container and restart the
+script.
+
+`docker stop vpn-client && docker rm vpn-client`
+
 # Further Considerations
 
 Please note that if the script is interrupted before completion, an AWS Client VPN Endpoint created by the script may 

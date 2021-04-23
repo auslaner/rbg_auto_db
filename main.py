@@ -15,7 +15,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from vpn_config import prepare_config
 
-load_dotenv()
+load_dotenv('creds.env')
 
 
 def destroy_aws_vpn_gateway():

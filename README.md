@@ -18,6 +18,10 @@ First, create the `creds.env` file in the same directory as this file. In it, de
 Then, create the directories `backups` and `certs`. Place your client certificate and key files in the `certs` 
 directory.
 
+Install required packages:
+
+`pip install -r requirements.txt`
+
 # Usage
 
 Run `main.py`. The script will take from ~11-70 minutes to complete depending on how quickly the AWS VPN Gateway becomes

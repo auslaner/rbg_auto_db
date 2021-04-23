@@ -35,3 +35,8 @@ available. Occasionally, it seems to get stuck in the 'pending' state and will n
 case, simply re-run the script to try again.
 
 Tested with python version 3.9.1.
+
+# Further Considerations
+
+Please note that if the script is interrupted before completion, an AWS Client VPN Endpoint created by the script may 
+still exist. AWS charges for these endpoints so you will probably want to delete them manually before re-running.

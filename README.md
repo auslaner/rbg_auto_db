@@ -14,8 +14,7 @@ First, create the `creds.env` file in the same directory as this file. In it, de
 2. `PGHOST` as the internal IP address of the RDS instance within the AWS VPC
 3. `PGUSERNAME` as the username used to connect to the database
 4. `PGDB` as the name of the database
-5. `SERVER_CERT_ARN` as the AWS ARN of the certificate to be used as the AWS VPN Gateway server certificate
-6. `CLIENT_ROOT_CERT_ARN` as the AWS ARN of the root client certificate
+5. `ENDPOINDID` as the ID of the AWS Client VPN Endpoint
 
 Then, create the directories `backups` and `certs`. Place your client certificate and key files in the `certs` 
 directory.

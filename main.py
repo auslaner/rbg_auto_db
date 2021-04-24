@@ -31,7 +31,8 @@ def destroy_aws_vpn_gateway():
 
 def provision_aws_vpn_gateway():
     """
-    Requests the creation of an AWS VPN gateway.
+    Requests the association of the RDS subnet to an existing AWS
+    Client VPN Endpoint
     """
     logging.info('Provisioning AWS VPN Gateway...')
     try:

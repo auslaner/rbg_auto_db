@@ -15,7 +15,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from vpn_config import prepare_config
 
-load_dotenv('creds.env')
+load_dotenv(os.path.join(Path(__file__).parent.absolute(), 'creds.env'))
 
 
 def destroy_aws_vpn_gateway():
@@ -24,7 +24,7 @@ def destroy_aws_vpn_gateway():
     """
     logging.info('Destroying AWS VPN Gateway...')
     try:
-        subprocess.run(['scripts/aws_vpn_deletion.sh'], check=True)
+        subprocess.run([os.path.join(Path(__file__).parent.absolute(), 'scripts/aws_vpn_deletion.sh')], check=True)
     except subprocess.CalledProcessError as e:
         logging.error(f'[!] Error!: {e}')
 
@@ -35,7 +35,7 @@ def provision_aws_vpn_gateway():
     """
     logging.info('Provisioning AWS VPN Gateway...')
     try:
-        subprocess.run(['scripts/aws_vpn_creation.sh'], check=True)
+        subprocess.run([os.path.join(Path(__file__).parent.absolute(), 'scripts/aws_vpn_creation.sh')], check=True)
     except subprocess.CalledProcessError as e:
         logging.error(f'[!] Error!: {e}')
 
@@ -55,7 +55,7 @@ def run_db_dump_container():
     """
     logging.info('Running database container using VPN network...')
     todays_date = datetime.date.today().strftime('%m-%d-%Y')
-    with open('./backups/' + todays_date + '.sql', 'w+') as db_dump:
+    with open(os.path.join(Path(__file__).parent.absolute(), 'backups/' + todays_date + '.sql'), 'w+') as db_dump:
         attempts = 1
         while attempts <= 6:
             logging.info(f'\t...attempt number {str(attempts)}')
@@ -106,8 +106,8 @@ def build_vpn_container():
 
 
 def main():
-    logging.basicConfig(filename='main.log', level=logging.DEBUG, format='%(asctime)s %(message)s',
-                        datefmt='%m/%d/%Y %I:%M:%S %p')
+    logging.basicConfig(filename=os.path.join(Path(__file__).parent.absolute(), 'main.log'), level=logging.DEBUG,
+                        format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
     provision_aws_vpn_gateway()
     logging.info('Modifying VPN config file...')
     prepare_config()

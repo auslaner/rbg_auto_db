@@ -58,7 +58,7 @@ def run_db_dump_container():
     todays_date = datetime.date.today().strftime('%m-%d-%Y')
     with open(os.path.join(Path(__file__).parent.absolute(), 'backups/' + todays_date + '.sql'), 'w+') as db_dump:
         attempts = 1
-        while attempts <= 6:
+        while attempts <= 60:
             logging.info(f'\t...attempt number {str(attempts)}')
             try:
                 subprocess.run(['docker', 'run', '--rm', '--net=container:vpn-client', '-e',
@@ -70,8 +70,8 @@ def run_db_dump_container():
             except subprocess.CalledProcessError as e:
                 attempts += 1
                 logging.error(f'[!] Error!: {e}')
-                logging.info('Sleeping for 10 minutes before trying again...')
-                time.sleep(600)
+                logging.info('Sleeping for 1 minute before trying again...')
+                time.sleep(60)
 
 
 def start_vpn_container():

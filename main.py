@@ -58,7 +58,7 @@ def run_db_dump_container():
     todays_date = datetime.date.today().strftime('%m-%d-%Y')
     with open(os.path.join(Path(__file__).parent.absolute(), 'backups/' + todays_date + '.sql'), 'w+') as db_dump:
         attempts = 1
-        while attempts <= 60:
+        while attempts <= 10:
             logging.info(f'\t...attempt number {str(attempts)}')
             try:
                 subprocess.run(['docker', 'run', '--rm', '--net=container:vpn-client', '-e',

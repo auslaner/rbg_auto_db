@@ -56,7 +56,7 @@ def run_db_dump_container():
     """
     logging.info('Running database container using VPN network...')
     todays_date = datetime.date.today().strftime('%m-%d-%Y')
-    with open(os.path.join(Path(__file__).parent.absolute(), 'backups/' + todays_date + '.sql'), 'w+') as db_dump:
+    with open(os.path.join(Path(__file__).parent.absolute(), 'backups/rbg_db_' + todays_date + '.sql'), 'w+') as db_dump:
         attempts = 1
         while attempts <= 10:
             logging.info(f'\t...attempt number {str(attempts)}')

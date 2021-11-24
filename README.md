@@ -47,8 +47,3 @@ before it can clean up the containers. To resolve this, simply stop and remove t
 script.
 
 `docker stop vpn-client && docker rm vpn-client`
-
-# Further Considerations
-
-Please note that if the script is interrupted before completion, an AWS Client VPN Endpoint created by the script may 
-still exist. AWS charges for these endpoints so you will probably want to delete them manually before re-running.

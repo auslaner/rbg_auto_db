@@ -10,7 +10,7 @@ echo '' > aws_gateway.ovpn
 
 # Associate a subnet with the client endpoint
 output=$(aws ec2 associate-client-vpn-target-network \
-	--subnet-id subnet-0ead106100ce8a53a \
+	--subnet-id subnet-06639d8eca95c994f \
 	--client-vpn-endpoint-id "$ENDPOINTID")
 
 # Get the association ID from the output

@@ -62,7 +62,7 @@ def run_db_dump_container():
             logging.info(f'\t...attempt number {str(attempts)}')
             try:
                 subprocess.run(['docker', 'run', '--rm', '--net=container:vpn-client', '-e',
-                                'PGPASSWORD=' + os.getenv('PGPASSWORD'), 'postgres:12.3', 'pg_dump', '-h',
+                                'PGPASSWORD=' + os.getenv('PGPASSWORD'), 'postgres:12.11', 'pg_dump', '-h',
                                 os.getenv('PGHOST'), '-U', os.getenv('PGUSERNAME'), '-d', os.getenv('PGDB')],
                                check=True, stdout=db_dump)
                 logging.info('\t...Success!')

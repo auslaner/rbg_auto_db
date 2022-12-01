@@ -24,8 +24,8 @@ def modify_contents(contents, cert, key):
     remote_url_line[1] = remote_url
     contents[3] = ' '.join(remote_url_line) + '\n'
 
-    contents.insert(32, cert)
-    contents.insert(34, key)
+    contents.insert(33, cert)
+    contents.insert(35, key)
 
     return contents
 

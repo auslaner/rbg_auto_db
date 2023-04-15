@@ -61,7 +61,7 @@ def run_db_dump_container():
         while attempts <= 10:
             logging.info(f'\t...attempt number {str(attempts)}')
             try:
-                subprocess.run(['docker', 'run', '--rm', '--net=container:vpn-client', '-e',
+                subprocess.run(['podman', 'run', '--rm', '--net=container:vpn-client', '-e',
                                 'PGPASSWORD=' + os.getenv('PGPASSWORD'), 'postgres:12.11', 'pg_dump', '-h',
                                 os.getenv('PGHOST'), '-U', os.getenv('PGUSERNAME'), '-d', os.getenv('PGDB')],
                                check=True, stdout=db_dump)
@@ -80,7 +80,7 @@ def start_vpn_container():
     """
     logging.info('Starting VPN client container...')
     try:
-        subprocess.run(['docker', 'run', '-d', '--name', 'vpn-client', '--cap-add=NET_ADMIN', '--device',
+        subprocess.run(['podman', 'run', '-d', '--name', 'vpn-client', '--cap-add=NET_ADMIN', '--device',
                         '/dev/net/tun', '-v', str(Path(__file__).parent.absolute()) + ':/vpn', 'vpn', '--config',
                         '/vpn/aws_gateway.ovpn', '--auth-nocache'], check=True)
     except subprocess.CalledProcessError as e:
@@ -90,8 +90,8 @@ def start_vpn_container():
 def destroy_vpn_container():
     """Stop and remove any running VPN client containers"""
     logging.info('Cleaning up containers...')
-    subprocess.run(['docker', 'stop', 'vpn-client'])
-    subprocess.run(['docker', 'rm', 'vpn-client'])
+    subprocess.run(['podman', 'stop', 'vpn-client'])
+    subprocess.run(['podman', 'rm', 'vpn-client'])
 
 
 def build_vpn_container():
@@ -101,7 +101,7 @@ def build_vpn_container():
     """
     logging.info('Building VPN client container...')
     try:
-        subprocess.run(['docker', 'build', '.', '-t', 'vpn'], check=True)
+        subprocess.run(['podman', 'build', '.', '-t', 'vpn'], check=True)
     except subprocess.CalledProcessError as e:
         logging.error(f'[!] Error!: {e}')
 

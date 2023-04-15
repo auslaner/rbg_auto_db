@@ -39,7 +39,8 @@ def read_ovpn_config():
 
 def write_ovpn_config(contents):
     with open('aws_gateway.ovpn', 'w+') as ovpn_config:
-        ovpn_config.writelines(contents)
+        # Exclude final lines with "verify-x509-name server name"
+        ovpn_config.writelines(contents[:-2])
 
 
 def prepare_config():
